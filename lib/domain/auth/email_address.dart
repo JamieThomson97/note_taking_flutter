@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
-import 'package:note_taking_flutter/domain/core/failures.dart';
+import 'package:note_taking_flutter/domain/auth/failures.dart';
 import 'package:note_taking_flutter/domain/core/value_objects.dart';
 import 'package:note_taking_flutter/domain/core/value_validators.dart';
 
@@ -17,6 +17,4 @@ class EmailAddress extends ValueObject<String> {
   }
 
   const EmailAddress._(this.value);
-
-  // toString, equals, hashCode...
 }

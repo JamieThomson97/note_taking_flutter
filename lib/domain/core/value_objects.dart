@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'failures.dart';
+import '../auth/failures.dart';
 
 @immutable
 abstract class ValueObject<T> {
@@ -19,4 +19,6 @@ abstract class ValueObject<T> {
 
   @override
   String toString() => 'Value($value)';
+
+  bool isValid() => value.isRight();
 }

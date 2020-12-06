@@ -1,6 +1,6 @@
 
 import 'package:dartz/dartz.dart';
-import 'failures.dart';
+import '../auth/failures.dart';
 
 class ValueValidators{
 
@@ -15,7 +15,7 @@ class ValueValidators{
   }
 
   static Either<ValueFailure<String>, String> validatePassword(String input) {
-    // You can also add some advanced password checks (uppercase/lowercase, at least 1 number, ...)
+    
     if (input.length >= 6) {
       return right(input);
     } else {
