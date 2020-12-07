@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 import 'package:note_taking_flutter/domain/auth/password.dart';
 import 'package:note_taking_flutter/domain/auth/failures.dart';
 import 'package:note_taking_flutter/domain/auth/email_address.dart';
 import 'package:dartz/dartz.dart';
 import 'package:note_taking_flutter/domain/interface.dart';
 
+@LazySingleton()
+@Injectable(as:IAuthentication)
 class Authentication implements IAuthentication{
 
   final FirebaseAuth _firebaseAuth;
@@ -21,7 +24,7 @@ class Authentication implements IAuthentication{
       return right(unit);
     } 
     on PlatformException catch (error) {
-      if(error.code == 'email-already-in-use')
+      if (error.code == 'email-already-in-use')
         return left(const AuthFailure.emailAlreadyInUse());
       return left(const AuthFailure.serverError());
     }
@@ -34,7 +37,7 @@ class Authentication implements IAuthentication{
       return right(unit);
     } 
     on PlatformException catch (error) {
-      if(error.code == 'user-not-found' || error.code == 'wrong-password')
+      if (error.code == 'user-not-found' || error.code == 'wrong-password')
         // ignore: curly_braces_in_flow_control_structures
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       return left(const AuthFailure.serverError());
@@ -46,7 +49,7 @@ class Authentication implements IAuthentication{
     try{
       final user = await _googleSignIn.signIn();
 
-      if(user == null)
+      if (user == null)
         return left(const AuthFailure.cancelledByUser());
 
       final GoogleSignInAuthentication authObject = await user.authentication;

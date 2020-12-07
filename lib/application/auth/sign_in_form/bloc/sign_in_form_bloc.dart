@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:note_taking_flutter/domain/auth/email_address.dart';
 import 'package:note_taking_flutter/domain/auth/failures.dart';
 import 'package:note_taking_flutter/domain/auth/password.dart';
@@ -12,11 +13,12 @@ part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
 part 'sign_in_form_bloc.freezed.dart';
 
+@injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
   final IAuthentication _authentication;
 
-  SignInFormBloc(this._authentication) : super(SignInFormState.initial());  
+  SignInFormBloc(this._authentication) : super(SignInFormState.initial());
 
   @override
   Stream<SignInFormState> mapEventToState(SignInFormEvent event) async* {

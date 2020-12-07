@@ -4,8 +4,15 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import 'infrastructure/auth/authentication.dart';
+import 'infrastructure/core/injectable.dart';
+import 'domain/interface.dart';
+import 'application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -16,5 +23,13 @@ GetIt $initGetIt(
   EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
+  final firebaseInjectableModule = _$FirebaseInjectableModule();
+  gh.lazySingleton<FirebaseAuth>(() => firebaseInjectableModule.firebaseAuth);
+  gh.lazySingleton<GoogleSignIn>(() => firebaseInjectableModule.googleSignIn);
+  gh.factory<SignInFormBloc>(() => SignInFormBloc(get<IAuthentication>()));
+  gh.lazySingleton<Authentication>(
+      () => Authentication(get<FirebaseAuth>(), get<GoogleSignIn>()));
   return get;
 }
+
+class _$FirebaseInjectableModule extends FirebaseInjectableModule {}
