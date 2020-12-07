@@ -7,6 +7,7 @@ import 'package:note_taking_flutter/domain/core/value_validators.dart';
 @immutable
 class EmailAddress extends ValueObject<String> {
 
+  @override
   final Either<ValueFailure<String>, String> value;
 
   factory EmailAddress(String input) {

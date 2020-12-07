@@ -5,6 +5,7 @@ import 'package:note_taking_flutter/domain/core/value_validators.dart';
 
 class Password extends ValueObject<String>{
 
+  @override
   final Either<ValueFailure<String>, String> value;
   
   factory Password(String input){

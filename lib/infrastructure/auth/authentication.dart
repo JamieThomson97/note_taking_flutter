@@ -14,6 +14,7 @@ class Authentication implements IAuthentication{
 
   Authentication(this._firebaseAuth, this._googleSignIn);
 
+  @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(EmailAddress email, Password password) async {
     try{
       await _firebaseAuth.createUserWithEmailAndPassword(email: email.getOrCrash(), password: password.getOrCrash());
@@ -21,11 +22,12 @@ class Authentication implements IAuthentication{
     } 
     on PlatformException catch (error) {
       if(error.code == 'email-already-in-use')
-        return left(AuthFailure.emailAlreadyInUse());
-      return left(AuthFailure.serverError());
+        return left(const AuthFailure.emailAlreadyInUse());
+      return left(const AuthFailure.serverError());
     }
   }
   
+  @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(EmailAddress email, Password password) async {
     try{
       await _firebaseAuth.signInWithEmailAndPassword(email: email.getOrCrash(), password: password.getOrCrash());
@@ -33,25 +35,27 @@ class Authentication implements IAuthentication{
     } 
     on PlatformException catch (error) {
       if(error.code == 'user-not-found' || error.code == 'wrong-password')
-        return left(AuthFailure.invalidEmailAndPasswordCombination());
-      return left(AuthFailure.serverError());
+        // ignore: curly_braces_in_flow_control_structures
+        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+      return left(const AuthFailure.serverError());
     }
   }
   
+  @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
     try{
       final user = await _googleSignIn.signIn();
 
       if(user == null)
-        return left(AuthFailure.cancelledByUser());
+        return left(const AuthFailure.cancelledByUser());
 
-      GoogleSignInAuthentication authObject = await user.authentication;
-      OAuthCredential creds = GoogleAuthProvider.credential(idToken: authObject.idToken, accessToken: authObject.accessToken);
+      final GoogleSignInAuthentication authObject = await user.authentication;
+      final OAuthCredential creds = GoogleAuthProvider.credential(idToken: authObject.idToken, accessToken: authObject.accessToken);
       await _firebaseAuth.signInWithCredential(creds);
       return right(unit);
     } 
     on PlatformException catch (_) {
-      return left(AuthFailure.serverError());
+      return left(const AuthFailure.serverError());
     }      
   }
 }
