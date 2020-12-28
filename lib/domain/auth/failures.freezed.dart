@@ -26,6 +26,13 @@ class _$ValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+// ignore: unused_element
+  Initial<T> initial<T>({@required T failedValue}) {
+    return Initial<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -40,22 +47,26 @@ mixin _$ValueFailure<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult initial(T failedValue),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult initial(T failedValue),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult initial(Initial<T> value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult initial(Initial<T> value),
     @required TResult orElse(),
   });
 
@@ -167,9 +178,11 @@ class _$InvalidEmail<T>
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult initial(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(initial != null);
     return invalidEmail(failedValue);
   }
 
@@ -178,6 +191,7 @@ class _$InvalidEmail<T>
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult initial(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -192,9 +206,11 @@ class _$InvalidEmail<T>
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult initial(Initial<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(initial != null);
     return invalidEmail(this);
   }
 
@@ -203,6 +219,7 @@ class _$InvalidEmail<T>
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult initial(Initial<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -299,9 +316,11 @@ class _$ShortPassword<T>
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult initial(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(initial != null);
     return shortPassword(failedValue);
   }
 
@@ -310,6 +329,7 @@ class _$ShortPassword<T>
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult initial(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -324,9 +344,11 @@ class _$ShortPassword<T>
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult initial(Initial<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(initial != null);
     return shortPassword(this);
   }
 
@@ -335,6 +357,7 @@ class _$ShortPassword<T>
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult initial(Initial<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -352,6 +375,138 @@ abstract class ShortPassword<T> implements ValueFailure<T> {
   T get failedValue;
   @override
   $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $InitialCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InitialCopyWith(Initial<T> value, $Res Function(Initial<T>) then) =
+      _$InitialCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$InitialCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InitialCopyWith<T, $Res> {
+  _$InitialCopyWithImpl(Initial<T> _value, $Res Function(Initial<T>) _then)
+      : super(_value, (v) => _then(v as Initial<T>));
+
+  @override
+  Initial<T> get _value => super._value as Initial<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(Initial<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+/// @nodoc
+class _$Initial<T> with DiagnosticableTreeMixin implements Initial<T> {
+  const _$Initial({@required this.failedValue}) : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.initial(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.initial'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Initial<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @override
+  $InitialCopyWith<T, Initial<T>> get copyWith =>
+      _$InitialCopyWithImpl<T, Initial<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult invalidEmail(T failedValue),
+    @required TResult shortPassword(T failedValue),
+    @required TResult initial(T failedValue),
+  }) {
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(initial != null);
+    return initial(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidEmail(T failedValue),
+    TResult shortPassword(T failedValue),
+    TResult initial(T failedValue),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initial != null) {
+      return initial(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult invalidEmail(InvalidEmail<T> value),
+    @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult initial(Initial<T> value),
+  }) {
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(initial != null);
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidEmail(InvalidEmail<T> value),
+    TResult shortPassword(ShortPassword<T> value),
+    TResult initial(Initial<T> value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initial<T> implements ValueFailure<T> {
+  const factory Initial({@required T failedValue}) = _$Initial<T>;
+
+  @override
+  T get failedValue;
+  @override
+  $InitialCopyWith<T, Initial<T>> get copyWith;
 }
 
 /// @nodoc

@@ -8,39 +8,117 @@ class SignInForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
-        // TODO: implement listener
+        state.authResponse.fold(
+          () {},
+          (either) => either.fold(
+            (l) {
+              Flushbar
+            },
+            (r) {},
+          ),
+        );
       },
       builder: (context, state) {
         return Container(
           padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
           child: Form(
+            autovalidateMode: AutovalidateMode.always,
             child: Column(
               children: [
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'email'),
+                  onChanged: (value) => {
+                    if (value.isNotEmpty)
+                      context
+                          .read<SignInFormBloc>()
+                          .add(SignInFormEvent.emailChanged(value))
+                  },
+                  validator: (_) => context
+                      .read<SignInFormBloc>()
+                      .state
+                      .emailAddress
+                      .value
+                      .fold(
+                          (l) => l.maybeMap(
+                                invalidEmail: (_) => 'invalid email',
+                                orElse: () => null,
+                              ),
+                          (_) => null),
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(labelText: 'password'),
+                  onChanged: (value) => {
+                    if (value.isNotEmpty)
+                      context
+                          .read<SignInFormBloc>()
+                          .add(SignInFormEvent.passwordChanged(value))
+                  },
+                  validator: (_) => context
+                      .read<SignInFormBloc>()
+                      .state
+                      .emailAddress
+                      .value
+                      .fold(
+                          (l) => l.maybeMap(
+                                shortPassword: (_) => 'invalid password',
+                                orElse: () => null,
+                              ),
+                          (_) => null),
                 ),
                 const SizedBox(height: 70),
-                ButtonTheme(
-                  minWidth: 250,
-                  height: 60,
-                  child: FlatButton(
-                    onPressed: () => {},
-                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    color: const Color.fromRGBO(37, 36, 54, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: const Text(
-                      "Sign in",
-                      style: TextStyle(
-                        fontSize: 28,
+                Center(
+                  child: Row(
+                    children: [
+                      ButtonTheme(
+                        minWidth: 150,
+                        height: 60,
+                        child: FlatButton(
+                          onPressed: () => {
+                            context.read<SignInFormBloc>().add(
+                                  const SignInFormEvent
+                                      .signInWithEmailAndPasswordPressed(),
+                                )
+                          },
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                          color: const Color.fromRGBO(37, 36, 54, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: const Text(
+                            "Sign in",
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      const Spacer(),
+                      ButtonTheme(
+                        minWidth: 150,
+                        height: 60,
+                        child: FlatButton(
+                          onPressed: () => {
+                            context.read<SignInFormBloc>().add(
+                                  const SignInFormEvent
+                                      .registerWithEmailAndPasswordPressed(),
+                                )
+                          },
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                          color: const Color.fromRGBO(37, 36, 54, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: const Text(
+                            "Register",
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

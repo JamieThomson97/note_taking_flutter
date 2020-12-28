@@ -26,9 +26,11 @@ class SignInPage extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               )),
           const Spacer(flex: 4),
-          BlocProvider(
-            create: (context) => getIt<SignInFormBloc>(),
-            child: SignInForm(),
+          Center(
+            child: BlocProvider(
+              create: (context) => getIt<SignInFormBloc>(),
+              child: SignInForm(),
+            ),
           ),
           const SizedBox(
             height: 70,
