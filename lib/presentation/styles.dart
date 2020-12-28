@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_flutter/presentation/colors.dart';
 
 ThemeData theme = ThemeData(
     brightness: Brightness.dark,
@@ -9,11 +10,13 @@ ThemeData theme = ThemeData(
       headline1: TextStyle(
           fontSize: 72, fontWeight: FontWeight.bold, color: Colors.blue),
       headline2: TextStyle(
-        fontSize: 50,
-        fontWeight: FontWeight.w600,
+        fontSize: 45,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
       headline3: TextStyle(fontSize: 36, fontWeight: FontWeight.w300),
       bodyText1: TextStyle(fontSize: 18),
       bodyText2: TextStyle(fontSize: 14),
     ));
+
+TextStyle textButtonStyle = TextStyle(fontSize: 18, color: fadedColor);
