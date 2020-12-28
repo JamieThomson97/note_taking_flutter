@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_flutter/application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
 
@@ -10,8 +11,15 @@ class SignInForm extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return Column(
-          children: const [Text("Sign in form")],
+        return Form(
+          child: Column(
+            children: [
+              Text("Sign in form"),
+              TextFormField(
+                decoration: InputDecoration(prefixIcon: Icon(Icons.email)),
+              ),
+            ],
+          ),
         );
       },
     );
