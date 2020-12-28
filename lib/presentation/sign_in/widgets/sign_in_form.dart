@@ -14,9 +14,9 @@ class SignInForm extends StatelessWidget {
         return Form(
           child: Column(
             children: [
-              Text("Sign in form"),
+              const Text("Sign in form"),
               TextFormField(
-                decoration: InputDecoration(prefixIcon: Icon(Icons.email)),
+                decoration: const InputDecoration(labelText: 'email'),
               ),
             ],
           ),
