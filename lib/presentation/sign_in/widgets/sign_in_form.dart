@@ -1,7 +1,11 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_flutter/application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
+import 'package:note_taking_flutter/presentation/widgets/flushbar.dart';
+
+import '../../colors.dart';
 
 class SignInForm extends StatelessWidget {
   @override
@@ -10,12 +14,23 @@ class SignInForm extends StatelessWidget {
       listener: (context, state) {
         state.authResponse.fold(
           () {},
-          (either) => either.fold(
-            (l) {
-              Flushbar
-            },
-            (r) {},
-          ),
+          (either) => either.fold((l) {
+            getCustomFlushbar(
+                context,
+                "failed",
+                l.map(
+                    cancelledByUser: (_) => 'Cancelled',
+                    serverError: (_) => 'Server error',
+                    emailAlreadyInUse: (_) => 'Email already in use',
+                    invalidEmailAndPasswordCombination: (_) =>
+                        'Invalid combo'));
+          }, (r) {
+            getCustomFlushbar(
+              context,
+              "worked",
+              "the action worked",
+            );
+          }),
         );
       },
       builder: (context, state) {
@@ -75,14 +90,16 @@ class SignInForm extends StatelessWidget {
                         minWidth: 150,
                         height: 60,
                         child: FlatButton(
-                          onPressed: () => {
-                            context.read<SignInFormBloc>().add(
-                                  const SignInFormEvent
-                                      .signInWithEmailAndPasswordPressed(),
-                                )
-                          },
+                          onPressed: _enableButtons(context)
+                              ? () {
+                                  context.read<SignInFormBloc>().add(
+                                        const SignInFormEvent
+                                            .signInWithEmailAndPasswordPressed(),
+                                      );
+                                }
+                              : null,
                           padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          color: const Color.fromRGBO(37, 36, 54, 1),
+                          color: buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
@@ -99,14 +116,16 @@ class SignInForm extends StatelessWidget {
                         minWidth: 150,
                         height: 60,
                         child: FlatButton(
-                          onPressed: () => {
-                            context.read<SignInFormBloc>().add(
-                                  const SignInFormEvent
-                                      .registerWithEmailAndPasswordPressed(),
-                                )
-                          },
+                          onPressed: _enableButtons(context)
+                              ? () {
+                                  context.read<SignInFormBloc>().add(
+                                        const SignInFormEvent
+                                            .registerWithEmailAndPasswordPressed(),
+                                      );
+                                }
+                              : null,
                           padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          color: const Color.fromRGBO(37, 36, 54, 1),
+                          color: buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
@@ -127,5 +146,15 @@ class SignInForm extends StatelessWidget {
         );
       },
     );
+  }
+
+  bool _enableButtons(BuildContext context) {
+    // return true;
+
+    // ignore: dead_code
+    return context.select((SignInFormBloc bloc) =>
+            bloc.state.emailAddress.value.fold((l) => false, (r) => true)) &&
+        context.select((SignInFormBloc bloc) =>
+            bloc.state.password.value.fold((l) => false, (r) => true));
   }
 }

@@ -22,7 +22,7 @@ class Authentication implements IAuthentication {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email.getOrCrash(), password: password.getOrCrash());
       return right(unit);
-    } on PlatformException catch (error) {
+    } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use')
         return left(const AuthFailure.emailAlreadyInUse());
       return left(const AuthFailure.serverError());
