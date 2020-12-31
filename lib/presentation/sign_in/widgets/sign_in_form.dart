@@ -1,10 +1,8 @@
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_flutter/application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
 import 'package:note_taking_flutter/presentation/widgets/flushbar.dart';
-
 import '../../colors.dart';
 
 class SignInForm extends StatelessWidget {
@@ -149,9 +147,6 @@ class SignInForm extends StatelessWidget {
   }
 
   bool _enableButtons(BuildContext context) {
-    // return true;
-
-    // ignore: dead_code
     return context.select((SignInFormBloc bloc) =>
             bloc.state.emailAddress.value.fold((l) => false, (r) => true)) &&
         context.select((SignInFormBloc bloc) =>

@@ -36,7 +36,7 @@ class Authentication implements IAuthentication {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email.getOrCrash(), password: password.getOrCrash());
       return right(unit);
-    } on PlatformException catch (error) {
+    } on FirebaseAuthException catch (error) {
       if (error.code == 'user-not-found' || error.code == 'wrong-password')
         // ignore: curly_braces_in_flow_control_structures
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
