@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:note_taking_flutter/application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
-import 'package:note_taking_flutter/presentation/widgets/flushbar.dart';
+import 'package:VeloGo/application/auth/sign_in_form/bloc/sign_in_form_bloc.dart';
+import 'package:VeloGo/presentation/widgets/flushbar.dart';
 import '../../colors.dart';
 
 class SignInForm extends StatelessWidget {

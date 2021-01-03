@@ -23,7 +23,24 @@ abstract class ValueObject<T> {
 
   bool isValid() => value.isRight();
 
-  T getOrCrash(){
+  T getOrCrash() {
     return value.fold((l) => throw UnexpectedValueError(l), (r) => r);
   }
+}
+
+class UniqueId extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory UniqueId() {
+    return UniqueId._(right("fake uId"));
+  }
+
+  factory UniqueId.fromUniqueString(String uId) {
+    assert(uId != null);
+    return (UniqueId._(
+      right(uId),
+    ));
+  }
+
+  const UniqueId._(this.value);
 }

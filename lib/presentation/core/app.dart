@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note_taking_flutter/presentation/sign_in/sign_in_page.dart';
-import 'package:note_taking_flutter/presentation/styles.dart';
+import 'package:VeloGo/presentation/sign_in/sign_in_page.dart';
+import 'package:VeloGo/presentation/styles.dart';
 
 class MyApp extends StatelessWidget {
   @override

@@ -1,12 +1,14 @@
+import 'package:VeloGo/domain/auth/email_address.dart';
+import 'package:VeloGo/domain/auth/failures.dart';
+import 'package:VeloGo/domain/auth/password.dart';
+import 'package:VeloGo/domain/auth/user.dart' as User;
+import 'package:VeloGo/domain/core/value_objects.dart';
+import 'package:VeloGo/domain/interface.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
-import 'package:note_taking_flutter/domain/auth/password.dart';
-import 'package:note_taking_flutter/domain/auth/failures.dart';
-import 'package:note_taking_flutter/domain/auth/email_address.dart';
-import 'package:dartz/dartz.dart';
-import 'package:note_taking_flutter/domain/interface.dart';
 
 @LazySingleton(as: IAuthentication)
 class Authentication implements IAuthentication {
@@ -63,5 +65,16 @@ class Authentication implements IAuthentication {
     } on PlatformException catch (_) {
       return left(const AuthFailure.serverError());
     }
+  }
+
+  @override
+  Option<User.User> getSignedInUser() => some(User.User(
+        uId: UniqueId.fromUniqueString(_firebaseAuth.currentUser.uid),
+      ));
+
+  @override
+  Future<void> signOut() {
+    // TODO: implement signOut
+    throw UnimplementedError();
   }
 }

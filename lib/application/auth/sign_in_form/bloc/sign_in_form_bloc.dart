@@ -4,10 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:note_taking_flutter/domain/auth/email_address.dart';
-import 'package:note_taking_flutter/domain/auth/failures.dart';
-import 'package:note_taking_flutter/domain/auth/password.dart';
-import 'package:note_taking_flutter/domain/interface.dart';
+import 'package:VeloGo/domain/auth/email_address.dart';
+import 'package:VeloGo/domain/auth/failures.dart';
+import 'package:VeloGo/domain/auth/password.dart';
+import 'package:VeloGo/domain/interface.dart';
 
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
