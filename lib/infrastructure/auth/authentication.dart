@@ -68,13 +68,10 @@ class Authentication implements IAuthentication {
   }
 
   @override
-  Option<User.User> getSignedInUser() => some(User.User(
-        uId: UniqueId.fromUniqueString(_firebaseAuth.currentUser.uid),
+  Option<User.User> getSignedInUser() => optionOf(User.User(
+        uId: UniqueId.fromUniqueString(_firebaseAuth.currentUser?.uid),
       ));
 
   @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
-  }
+  Future<void> signOut() async => await _firebaseAuth.signOut();
 }
