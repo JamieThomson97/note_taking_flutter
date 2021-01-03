@@ -20,7 +20,9 @@ class Authentication implements IAuthentication {
       EmailAddress email, Password password) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email.getOrCrash(), password: password.getOrCrash());
+        email: email.getOrCrash(),
+        password: password.getOrCrash(),
+      );
       return right(unit);
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use')
@@ -53,7 +55,9 @@ class Authentication implements IAuthentication {
 
       final GoogleSignInAuthentication authObject = await user.authentication;
       final OAuthCredential creds = GoogleAuthProvider.credential(
-          idToken: authObject.idToken, accessToken: authObject.accessToken);
+        idToken: authObject.idToken,
+        accessToken: authObject.accessToken,
+      );
       await _firebaseAuth.signInWithCredential(creds);
       return right(unit);
     } on PlatformException catch (_) {
