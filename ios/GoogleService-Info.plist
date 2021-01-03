@@ -3,32 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>680855194208-hm912pnr0bqnnips63h8jku17ebn4kfh.apps.googleusercontent.com</string>
+	<string>341882783721-9fh7a0lemm6c1jivakt1g2o03dj1teqf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.680855194208-hm912pnr0bqnnips63h8jku17ebn4kfh</string>
+	<string>com.googleusercontent.apps.341882783721-9fh7a0lemm6c1jivakt1g2o03dj1teqf</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBhOEXFhOLWZThy2Tsl2u6nvhljiMVbhf8</string>
+	<string>AIzaSyA41RZREWXIeuKcoasK0v3y5MsDMLgMgAM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>680855194208</string>
+	<string>341882783721</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.noteTakingFlutter</string>
+	<string>com.JamieThomson.VeloGo</string>
 	<key>PROJECT_ID</key>
-	<string>flutter-3e26a</string>
+	<string>velogo-25d35</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flutter-3e26a.appspot.com</string>
+	<string>velogo-25d35.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:680855194208:ios:da64d2bf6c3f899eb85105</string>
+	<string>1:341882783721:ios:b3b2f28cb76e46df6eed78</string>
 </dict>
 </plist>

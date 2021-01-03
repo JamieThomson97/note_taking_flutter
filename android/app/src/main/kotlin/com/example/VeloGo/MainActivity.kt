@@ -1,4 +1,4 @@
-package com.example.note_taking_flutter
+package com.example.VeloGo
 
 import io.flutter.embedding.android.FlutterActivity
 
