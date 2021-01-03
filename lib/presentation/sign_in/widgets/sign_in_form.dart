@@ -17,11 +17,11 @@ class SignInForm extends StatelessWidget {
                 context,
                 "failed",
                 l.map(
-                    cancelledByUser: (_) => 'Cancelled',
-                    serverError: (_) => 'Server error',
-                    emailAlreadyInUse: (_) => 'Email already in use',
+                    cancelledByUser: (_) => 'cancelled',
+                    serverError: (_) => 'server error',
+                    emailAlreadyInUse: (_) => 'email already in use',
                     invalidEmailAndPasswordCombination: (_) =>
-                        'Invalid combo'));
+                        'invalid email / password combo'));
           }, (r) {
             getCustomFlushbar(
               context,
