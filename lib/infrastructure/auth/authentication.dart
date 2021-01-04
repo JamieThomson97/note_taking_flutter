@@ -1,14 +1,14 @@
 import 'package:VeloGo/domain/auth/email_address.dart';
 import 'package:VeloGo/domain/auth/failures.dart';
 import 'package:VeloGo/domain/auth/password.dart';
-import 'package:VeloGo/domain/auth/user.dart' as User;
-import 'package:VeloGo/domain/core/value_objects.dart';
+import 'package:VeloGo/domain/auth/user.dart' as _user;
 import 'package:VeloGo/domain/interface.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:VeloGo/infrastructure/auth/firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthentication)
 class Authentication implements IAuthentication {
@@ -68,10 +68,9 @@ class Authentication implements IAuthentication {
   }
 
   @override
-  Option<User.User> getSignedInUser() => optionOf(User.User(
-        uId: UniqueId.fromUniqueString(_firebaseAuth.currentUser?.uid),
-      ));
+  Option<_user.User> getSignedInUser() =>
+      optionOf(_firebaseAuth.currentUser?.toDomain());
 
   @override
-  Future<void> signOut() async => await _firebaseAuth.signOut();
+  Future<void> signOut() async => _firebaseAuth.signOut();
 }

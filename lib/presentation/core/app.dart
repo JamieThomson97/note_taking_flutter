@@ -1,5 +1,6 @@
 import 'package:VeloGo/application/auth/auth_bloc.dart';
 import 'package:VeloGo/injection.dart';
+import 'package:VeloGo/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:VeloGo/presentation/styles.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: theme,
-        builder: ExtendedNavigator<Router>(router: Router()),
+        builder: ExtendedNavigator<AppRouter>(router: AppRouter()),
       ),
     );
   }

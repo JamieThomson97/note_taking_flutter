@@ -14,14 +14,15 @@ class SignInForm extends StatelessWidget {
           () {},
           (either) => either.fold((l) {
             getCustomFlushbar(
-                context,
-                "failed",
-                l.map(
-                    cancelledByUser: (_) => 'cancelled',
-                    serverError: (_) => 'server error',
-                    emailAlreadyInUse: (_) => 'email already in use',
-                    invalidEmailAndPasswordCombination: (_) =>
-                        'invalid email / password combo'));
+              context,
+              "failed",
+              l.map(
+                  cancelledByUser: (_) => 'cancelled',
+                  serverError: (_) => 'server error',
+                  emailAlreadyInUse: (_) => 'email already in use',
+                  invalidEmailAndPasswordCombination: (_) =>
+                      'invalid email / password combo'),
+            );
           }, (r) {
             getCustomFlushbar(
               context,
@@ -64,9 +65,9 @@ class SignInForm extends StatelessWidget {
                   decoration: const InputDecoration(labelText: 'password'),
                   onChanged: (value) => {
                     if (value.isNotEmpty)
-                      context
-                          .read<SignInFormBloc>()
-                          .add(SignInFormEvent.passwordChanged(value))
+                      context.read<SignInFormBloc>().add(
+                            SignInFormEvent.passwordChanged(value),
+                          )
                   },
                   validator: (_) => context
                       .read<SignInFormBloc>()

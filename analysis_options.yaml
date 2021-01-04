@@ -1,0 +1,14 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    curly_braces_in_flow_control_structures: false
+    avoid_single_cascade_in_expression_statements: false
+    directives_ordering: false
+
+analyzer:
+  errors:
+    missing_required_param: error
+    missing_return: error
+    must_be_immutable: error
+    sort_unnamed_constructors_first: ignore

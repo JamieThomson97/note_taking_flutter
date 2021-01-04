@@ -12,53 +12,60 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
+    return Material(
+      child: Container(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('resources/cropped_sign_in_background.png'),
-              fit: BoxFit.cover)),
-      child: Column(
-        children: [
-          const Spacer(flex: 3),
-          const Text("Sign in",
+              fit: BoxFit.cover),
+        ),
+        child: Column(
+          children: [
+            const Spacer(flex: 3),
+            const Text(
+              "Sign in",
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.w600,
-              )),
-          const Spacer(flex: 4),
-          Center(
-            child: BlocProvider(
-              create: (context) => getIt<SignInFormBloc>(),
-              child: SignInForm(),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: FlatButton(
+            const Spacer(flex: 4),
+            Center(
+              child: BlocProvider(
+                create: (context) => getIt<SignInFormBloc>(),
+                child: SignInForm(),
+              ),
+            ),
+            const SizedBox(
+              height: 70,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: FlatButton(
                       onPressed: () => {},
                       child: Text(
                         "Forgot your password?",
                         style: textButtonStyle,
-                      )),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: FlatButton(
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: FlatButton(
                       onPressed: () => {},
-                      child: Text("Sign up", style: textButtonStyle)),
-                ),
-              ],
+                      child: Text("Sign up", style: textButtonStyle),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Spacer(flex: 3),
-        ],
+            const Spacer(flex: 3),
+          ],
+        ),
       ),
     );
   }
