@@ -1,3 +1,4 @@
+import 'package:VeloGo/presentation/home/widgets/title_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,11 +22,7 @@ class HomePage extends StatelessWidget {
         child: ListView(
       padding: const EdgeInsets.fromLTRB(16, 45, 16, 0),
       children: <Widget>[
-        Container(
-          height: titleBarProportion(),
-          color: Colors.amber[800],
-          child: const Center(child: Text('Title bar')),
-        ),
+        TitleBar(height: titleBarProportion()),
         listSpacer,
         Container(
           height: carouselProportion(),
@@ -42,7 +39,7 @@ class HomePage extends StatelessWidget {
         Container(
           height: tileProportion(),
           color: Colors.amber[500],
-          child: const Center(child: Text('What we think you\'ll liked')),
+          child: const Center(child: Text('What we think you\'ll like')),
         ),
         listSpacer,
         Container(

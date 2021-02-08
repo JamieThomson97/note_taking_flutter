@@ -14,6 +14,7 @@ ThemeData theme = ThemeData(
         color: Colors.white,
       ),
       headline3: TextStyle(fontSize: 36, fontWeight: FontWeight.w300),
+      headline4: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
       bodyText1: TextStyle(fontSize: 18),
       bodyText2: TextStyle(fontSize: 14),
     ));
