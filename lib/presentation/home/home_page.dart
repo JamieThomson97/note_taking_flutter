@@ -1,3 +1,4 @@
+import 'package:VeloGo/presentation/home/widgets/discover_carousel.dart';
 import 'package:VeloGo/presentation/home/widgets/title_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,7 @@ class HomePage extends StatelessWidget {
       children: <Widget>[
         TitleBar(height: titleBarProportion()),
         listSpacer,
-        Container(
-          height: carouselProportion(),
-          color: Colors.amber[700],
-          child: const Center(child: Text('Discover Carousel')),
-        ),
+        DiscoverCarousel(),
         listSpacer,
         Container(
           height: tileProportion(),
